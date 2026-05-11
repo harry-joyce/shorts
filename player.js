@@ -8,23 +8,9 @@ const FORMAT_LABELS = {
   '9x16-edited':'9:16 Edited',
 };
 
-const feedEl      = document.getElementById('feed');
-const counterEl   = document.getElementById('video-counter');
-const badgeEl     = document.getElementById('format-badge');
-const muteBanner  = document.getElementById('mute-banner');
-
-let soundEnabled  = false;
-let currentVideo  = null;
-
-// ── Sound ──────────────────────────────────────────────────
-function enableSound() {
-  if (soundEnabled) return;
-  soundEnabled = true;
-  document.querySelectorAll('.feed video').forEach(v => { v.muted = false; });
-  muteBanner.classList.add('hidden');
-}
-
-muteBanner.addEventListener('click', enableSound);
+const feedEl    = document.getElementById('feed');
+const counterEl = document.getElementById('video-counter');
+const badgeEl   = document.getElementById('format-badge');
 
 // ── Back button ────────────────────────────────────────────
 document.getElementById('btn-back').addEventListener('click', () => {
@@ -59,10 +45,9 @@ function buildPlayer(videos) {
     return;
   }
 
-  const total = videos.length;
-  counterEl.textContent = `1 / ${total}`;
-
+  const total  = videos.length;
   const cssType = type.startsWith('9x16') ? 'type-9x16' : 'type-16x9';
+  counterEl.textContent = `1 / ${total}`;
 
   videos.forEach((src, i) => {
     const item = document.createElement('div');
@@ -73,10 +58,9 @@ function buildPlayer(videos) {
     video.src = src;
     video.loop = true;
     video.playsInline = true;
-    video.muted = true;       // start muted; enabled on first interaction
     video.preload = i < 2 ? 'auto' : 'metadata';
 
-    // Tap overlay — toggles play/pause (and enables sound on first tap)
+    // Tap overlay — toggles play/pause
     const tap = document.createElement('div');
     tap.className = 'tap-overlay';
 
@@ -86,15 +70,6 @@ function buildPlayer(videos) {
 
     let pauseTimer;
     tap.addEventListener('click', () => {
-      if (!soundEnabled) {
-        enableSound();
-        // unmuting may need a fresh play call on some browsers
-        if (!video.paused) {
-          video.pause();
-          video.play().catch(() => {});
-        }
-        return;
-      }
       if (video.paused) {
         video.play().catch(() => {});
       } else {
@@ -125,16 +100,26 @@ function buildPlayer(videos) {
     feedEl.appendChild(item);
   });
 
+  // Sentinel — when scrolled past the last video, loop back to the first
+  const sentinel = document.createElement('div');
+  sentinel.style.cssText = 'height:1px;flex-shrink:0;';
+  feedEl.appendChild(sentinel);
+
+  new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      feedEl.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, { threshold: 1.0 }).observe(sentinel);
+
   // IntersectionObserver — autoplay video in view
   const items = feedEl.querySelectorAll('.video-item');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      const video  = entry.target.querySelector('video');
-      const idx    = parseInt(entry.target.dataset.index, 10);
+      const video = entry.target.querySelector('video');
+      const idx   = parseInt(entry.target.dataset.index, 10);
 
       if (entry.isIntersecting) {
-        currentVideo = video;
         video.play().catch(() => {});
         counterEl.textContent = `${idx + 1} / ${total}`;
 
