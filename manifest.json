@@ -1,0 +1,89 @@
+{
+  "english": {
+    "16x9": [
+      "videos/samples/16x9/sample1.mp4",
+      "videos/samples/16x9/sample2.mp4",
+      "videos/samples/16x9/sample3.mp4"
+    ],
+    "9x16-crop": [
+      "videos/samples/9x16-crop/sample1.mp4",
+      "videos/samples/9x16-crop/sample2.mp4",
+      "videos/samples/9x16-crop/sample3.mp4"
+    ],
+    "9x16-edited": [
+      "videos/samples/9x16-edited/sample1.mp4",
+      "videos/samples/9x16-edited/sample2.mp4",
+      "videos/samples/9x16-edited/sample3.mp4"
+    ]
+  },
+  "spanish": {
+    "16x9": [
+      "videos/spanish/16x9/video1.mp4",
+      "videos/spanish/16x9/video2.mp4"
+    ],
+    "9x16-crop": [
+      "videos/spanish/9x16-crop/video1.mp4",
+      "videos/spanish/9x16-crop/video2.mp4"
+    ],
+    "9x16-edited": [
+      "videos/spanish/9x16-edited/video1.mp4",
+      "videos/spanish/9x16-edited/video2.mp4"
+    ]
+  },
+  "dutch": {
+    "16x9": [
+      "videos/dutch/16x9/video1.mp4",
+      "videos/dutch/16x9/video2.mp4"
+    ],
+    "9x16-crop": [
+      "videos/dutch/9x16-crop/video1.mp4",
+      "videos/dutch/9x16-crop/video2.mp4"
+    ],
+    "9x16-edited": [
+      "videos/dutch/9x16-edited/video1.mp4",
+      "videos/dutch/9x16-edited/video2.mp4"
+    ]
+  },
+  "german": {
+    "16x9": [
+      "videos/german/16x9/video1.mp4",
+      "videos/german/16x9/video2.mp4"
+    ],
+    "9x16-crop": [
+      "videos/german/9x16-crop/video1.mp4",
+      "videos/german/9x16-crop/video2.mp4"
+    ],
+    "9x16-edited": [
+      "videos/german/9x16-edited/video1.mp4",
+      "videos/german/9x16-edited/video2.mp4"
+    ]
+  },
+  "welsh": {
+    "16x9": [
+      "videos/welsh/16x9/video1.mp4",
+      "videos/welsh/16x9/video2.mp4"
+    ],
+    "9x16-crop": [
+      "videos/welsh/9x16-crop/video1.mp4",
+      "videos/welsh/9x16-crop/video2.mp4"
+    ],
+    "9x16-edited": [
+      "videos/welsh/9x16-edited/video1.mp4",
+      "videos/welsh/9x16-edited/video2.mp4"
+    ]
+  },
+  "xhosa": {
+    "16x9": [
+      "videos/xhosa/16x9/video1.mp4",
+      "videos/xhosa/16x9/video2.mp4"
+    ],
+    "9x16-crop": [
+      "videos/xhosa/9x16-crop/video1.mp4",
+      "videos/xhosa/9x16-crop/video2.mp4"
+    ],
+    "9x16-edited": [
+      "videos/xhosa/9x16-edited/video1.mp4",
+      "videos/xhosa/9x16-edited/video2.mp4"
+    ]
+  }
+}

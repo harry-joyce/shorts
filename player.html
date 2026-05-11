@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Short Form Video — POC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-player">
+
+  <!-- Fixed chrome overlaid on the feed -->
+  <div class="player-chrome" id="player-chrome">
+    <div class="chrome-top">
+      <button class="btn-back" id="btn-back" aria-label="Go back">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span class="format-badge" id="format-badge"></span>
+      <span class="video-counter" id="video-counter"></span>
+    </div>
+  </div>
+
+  <!-- Mute banner — visible until user interacts -->
+  <div class="mute-banner" id="mute-banner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+      <line x1="23" y1="9" x2="17" y2="15"/>
+      <line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+    Tap to enable sound
+  </div>
+
+  <!-- Scroll feed -->
+  <div class="player-outer">
+    <div class="feed" id="feed">
+      <div class="loading-screen" id="loading">
+        <div class="spinner"></div>
+        <span>Loading videos…</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="player.js"></script>
+</body>
+</html>

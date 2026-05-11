@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Short Form Video — POC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-landing">
+  <main class="landing">
+
+    <header class="landing-header">
+      <h1 class="app-title">Short Form Video</h1>
+      <p class="app-subtitle">Proof of Concept</p>
+    </header>
+
+    <section class="language-section">
+      <label class="field-label" for="language-select">Select Language</label>
+      <div class="select-wrapper">
+        <select id="language-select" class="language-select">
+          <option value="">Choose a language…</option>
+          <option value="english">English</option>
+          <option value="spanish">Spanish</option>
+          <option value="dutch">Dutch</option>
+          <option value="german">German</option>
+          <option value="welsh">Welsh</option>
+          <option value="xhosa">Xhosa</option>
+        </select>
+        <span class="select-chevron" aria-hidden="true">
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </div>
+    </section>
+
+    <section class="format-section" id="format-section">
+      <p class="field-label">Select Format</p>
+      <div class="format-cards" id="format-cards">
+
+        <button class="format-card" data-type="16x9" disabled>
+          <div class="format-preview">
+            <div class="preview-frame preview-frame--wide">
+              <span class="preview-label">16:9</span>
+            </div>
+          </div>
+          <div class="format-info">
+            <h2 class="format-title">Original 16:9</h2>
+            <p class="format-desc">Standard widescreen — displayed letterboxed for portrait screens</p>
+          </div>
+          <svg class="card-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <button class="format-card" data-type="9x16-crop" disabled>
+          <div class="format-preview">
+            <div class="preview-frame preview-frame--tall preview-frame--crop">
+              <span class="preview-label">9:16</span>
+            </div>
+          </div>
+          <div class="format-info">
+            <h2 class="format-title">9:16 Centre Crop</h2>
+            <p class="format-desc">Auto-cropped to portrait — no manual editing applied</p>
+          </div>
+          <svg class="card-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <button class="format-card" data-type="9x16-edited" disabled>
+          <div class="format-preview">
+            <div class="preview-frame preview-frame--tall preview-frame--edited">
+              <span class="preview-label">9:16</span>
+            </div>
+          </div>
+          <div class="format-info">
+            <h2 class="format-title">9:16 Edited</h2>
+            <p class="format-desc">Purpose-made for short form — optimised for portrait viewing</p>
+          </div>
+          <svg class="card-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+      </div>
+    </section>
+
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
