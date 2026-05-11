@@ -420,6 +420,27 @@ html, body {
   transform: translate(-50%, -50%) scale(1);
 }
 
+/* Per-video buffering spinner */
+.video-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border: 2.5px solid rgba(255,255,255,0.15);
+  border-top-color: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.video-spinner.active {
+  opacity: 1;
+}
+
 /* Scroll hint — shown on first video, auto-fades */
 .scroll-hint {
   position: absolute;

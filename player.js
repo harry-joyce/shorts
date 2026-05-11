@@ -58,7 +58,14 @@ function buildPlayer(videos) {
     video.src = src;
     video.loop = true;
     video.playsInline = true;
+    video.muted = true;
     video.preload = i < 2 ? 'auto' : 'metadata';
+
+    const spinner = document.createElement('div');
+    spinner.className = 'video-spinner';
+    video.addEventListener('waiting', () => spinner.classList.add('active'));
+    video.addEventListener('playing', () => spinner.classList.remove('active'));
+    video.addEventListener('canplay', () => spinner.classList.remove('active'));
 
     // Tap overlay — toggles play/pause
     const tap = document.createElement('div');
@@ -81,6 +88,7 @@ function buildPlayer(videos) {
     });
 
     item.appendChild(video);
+    item.appendChild(spinner);
     item.appendChild(tap);
     item.appendChild(pauseIcon);
 
@@ -116,19 +124,32 @@ function buildPlayer(videos) {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      const video = entry.target.querySelector('video');
-      const idx   = parseInt(entry.target.dataset.index, 10);
+      const video   = entry.target.querySelector('video');
+      const spinner = entry.target.querySelector('.video-spinner');
+      const idx     = parseInt(entry.target.dataset.index, 10);
 
       if (entry.isIntersecting) {
+        if (video.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) {
+          spinner.classList.add('active');
+        }
         video.play().catch(() => {});
         counterEl.textContent = `${idx + 1} / ${total}`;
 
-        // Preload the next video
-        const nextItem = items[idx + 1];
-        if (nextItem) nextItem.querySelector('video').preload = 'auto';
+        // Preload the next two videos
+        for (let j = 1; j <= 2; j++) {
+          const nextItem = items[idx + j];
+          if (nextItem) {
+            const nextVideo = nextItem.querySelector('video');
+            if (nextVideo.preload !== 'auto') {
+              nextVideo.preload = 'auto';
+              nextVideo.load();
+            }
+          }
+        }
       } else {
         video.pause();
         video.currentTime = 0;
+        spinner.classList.remove('active');
       }
     });
   }, { threshold: 0.6 });
