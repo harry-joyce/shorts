@@ -8,9 +8,23 @@ const FORMAT_LABELS = {
   '9x16-edited':'9:16 Edited',
 };
 
-const feedEl    = document.getElementById('feed');
-const counterEl = document.getElementById('video-counter');
-const badgeEl   = document.getElementById('format-badge');
+const feedEl      = document.getElementById('feed');
+const counterEl   = document.getElementById('video-counter');
+const badgeEl     = document.getElementById('format-badge');
+const muteBanner  = document.getElementById('mute-banner');
+
+let soundEnabled  = false;
+let currentVideo  = null;
+
+// ── Sound ──────────────────────────────────────────────────
+function enableSound() {
+  if (soundEnabled) return;
+  soundEnabled = true;
+  document.querySelectorAll('.feed video').forEach(v => { v.muted = false; });
+  muteBanner.classList.add('hidden');
+}
+
+muteBanner.addEventListener('click', enableSound);
 
 // ── Back button ────────────────────────────────────────────
 document.getElementById('btn-back').addEventListener('click', () => {
@@ -77,6 +91,14 @@ function buildPlayer(videos) {
 
     let pauseTimer;
     tap.addEventListener('click', () => {
+      if (!soundEnabled) {
+        enableSound();
+        if (!video.paused) {
+          video.pause();
+          video.play().catch(() => {});
+        }
+        return;
+      }
       if (video.paused) {
         video.play().catch(() => {});
       } else {
@@ -129,6 +151,7 @@ function buildPlayer(videos) {
       const idx     = parseInt(entry.target.dataset.index, 10);
 
       if (entry.isIntersecting) {
+        currentVideo = video;
         if (video.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) {
           spinner.classList.add('active');
         }
