@@ -24,7 +24,18 @@
       "videos/english/9x16-crop/jcm_E_1319-1353.mp4",
       "videos/english/9x16-crop/wcgv_06_E_0218-0250.mp4"
     ],
-    "9x16-edited": []
+    "9x16-edited": [
+      "videos/english/9x16-edited/dlf_01_E_2137-2210.mp4",
+      "videos/english/9x16-edited/dlf_01_E_2503-2538.mp4",
+      "videos/english/9x16-edited/dlf_01_E_3206-3236.mp4",
+      "videos/english/9x16-edited/gnj_01_E_1532-1559.mp4",
+      "videos/english/9x16-edited/gnj_01_E_4044-4128.mp4",
+      "videos/english/9x16-edited/gnj_01_E_5257-5318.mp4",
+      "videos/english/9x16-edited/jcm_E_0848-0923.mp4",
+      "videos/english/9x16-edited/jcm_E_1135-1218.mp4",
+      "videos/english/9x16-edited/jcm_E_1319-1353.mp4",
+      "videos/english/9x16-edited/wcgv_06_E_0218-0250.mp4"
+    ]
   },
   "spanish": {
     "16x9": [
@@ -51,7 +62,18 @@
       "videos/spanish/9x16-crop/jcm_S_1319-1353.mp4",
       "videos/spanish/9x16-crop/wcgv_06_S_0218-0250.mp4"
     ],
-    "9x16-edited": []
+    "9x16-edited": [
+      "videos/spanish/9x16-edited/dlf_01_S_2137-2210.mp4",
+      "videos/spanish/9x16-edited/dlf_01_S_2503-2538.mp4",
+      "videos/spanish/9x16-edited/dlf_01_S_3206-3236.mp4",
+      "videos/spanish/9x16-edited/gnj_01_S_1532-1559.mp4",
+      "videos/spanish/9x16-edited/gnj_01_S_4044-4128.mp4",
+      "videos/spanish/9x16-edited/gnj_01_S_5257-5318.mp4",
+      "videos/spanish/9x16-edited/jcm_S_0848-0923.mp4",
+      "videos/spanish/9x16-edited/jcm_S_1135-1218.mp4",
+      "videos/spanish/9x16-edited/jcm_S_1319-1353.mp4",
+      "videos/spanish/9x16-edited/wcgv_06_S_0218-0250.mp4"
+    ]
   },
   "german": {
     "16x9": [
@@ -78,7 +100,18 @@
       "videos/german/9x16-crop/jcm_X_1319-1353.mp4",
       "videos/german/9x16-crop/wcgv_06_X_0218-0250.mp4"
     ],
-    "9x16-edited": []
+    "9x16-edited": [
+      "videos/german/9x16-edited/dlf_01_X_2137-2210.mp4",
+      "videos/german/9x16-edited/dlf_01_X_2503-2538.mp4",
+      "videos/german/9x16-edited/dlf_01_X_3206-3236.mp4",
+      "videos/german/9x16-edited/gnj_01_X_1532-1559.mp4",
+      "videos/german/9x16-edited/gnj_01_X_4044-4128.mp4",
+      "videos/german/9x16-edited/gnj_01_X_5257-5318.mp4",
+      "videos/german/9x16-edited/jcm_X_0848-0923.mp4",
+      "videos/german/9x16-edited/jcm_X_1135-1218.mp4",
+      "videos/german/9x16-edited/jcm_X_1319-1353.mp4",
+      "videos/german/9x16-edited/wcgv_06_X_0218-0250.mp4"
+    ]
   },
   "dutch": {
     "16x9": [
@@ -105,7 +138,18 @@
       "videos/dutch/9x16-crop/jcm_O_1319-1353.mp4",
       "videos/dutch/9x16-crop/wcgv_06_O_0218-0250.mp4"
     ],
-    "9x16-edited": []
+    "9x16-edited": [
+      "videos/dutch/9x16-edited/dlf_01_O_2137-2210.mp4",
+      "videos/dutch/9x16-edited/dlf_01_O_2503-2538.mp4",
+      "videos/dutch/9x16-edited/dlf_01_O_3206-3236.mp4",
+      "videos/dutch/9x16-edited/gnj_01_O_1532-1559.mp4",
+      "videos/dutch/9x16-edited/gnj_01_O_4044-4128.mp4",
+      "videos/dutch/9x16-edited/gnj_01_O_5257-5318.mp4",
+      "videos/dutch/9x16-edited/jcm_O_0848-0923.mp4",
+      "videos/dutch/9x16-edited/jcm_O_1135-1218.mp4",
+      "videos/dutch/9x16-edited/jcm_O_1319-1353.mp4",
+      "videos/dutch/9x16-edited/wcgv_06_O_0218-0250.mp4"
+    ]
   },
   "welsh": {
     "16x9": [
@@ -130,7 +174,17 @@
       "videos/welsh/9x16-crop/jcm_W_1135-1218.mp4",
       "videos/welsh/9x16-crop/jcm_W_1319-1353.mp4"
     ],
-    "9x16-edited": []
+    "9x16-edited": [
+      "videos/welsh/9x16-edited/dlf_01_W_2137-2210.mp4",
+      "videos/welsh/9x16-edited/dlf_01_W_2503-2538.mp4",
+      "videos/welsh/9x16-edited/dlf_01_W_3206-3236.mp4",
+      "videos/welsh/9x16-edited/gnj_01_W_1532-1559.mp4",
+      "videos/welsh/9x16-edited/gnj_01_W_4044-4128.mp4",
+      "videos/welsh/9x16-edited/gnj_01_W_5257-5318.mp4",
+      "videos/welsh/9x16-edited/jcm_W_0848-0923.mp4",
+      "videos/welsh/9x16-edited/jcm_W_1135-1218.mp4",
+      "videos/welsh/9x16-edited/jcm_W_1319-1353.mp4"
+    ]
   },
   "xhosa": {
     "16x9": [
@@ -157,6 +211,17 @@
       "videos/xhosa/9x16-crop/jcm_XO_1319-1353.mp4",
       "videos/xhosa/9x16-crop/wcgv_06_XO_0218-0250.mp4"
     ],
-    "9x16-edited": []
+    "9x16-edited": [
+      "videos/xhosa/9x16-edited/dlf_01_XO_2137-2210.mp4",
+      "videos/xhosa/9x16-edited/dlf_01_XO_2503-2538.mp4",
+      "videos/xhosa/9x16-edited/dlf_01_XO_3206-3236.mp4",
+      "videos/xhosa/9x16-edited/gnj_01_XO_1532-1559.mp4",
+      "videos/xhosa/9x16-edited/gnj_01_XO_4044-4128.mp4",
+      "videos/xhosa/9x16-edited/gnj_01_XO_5257-5318.mp4",
+      "videos/xhosa/9x16-edited/jcm_XO_0848-0923.mp4",
+      "videos/xhosa/9x16-edited/jcm_XO_1135-1218.mp4",
+      "videos/xhosa/9x16-edited/jcm_XO_1319-1353.mp4",
+      "videos/xhosa/9x16-edited/wcgv_06_XO_0218-0250.mp4"
+    ]
   }
 }

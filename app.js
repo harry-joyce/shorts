@@ -2,9 +2,13 @@ const langSelect = document.getElementById('language-select');
 const formatSection = document.getElementById('format-section');
 const cards = document.querySelectorAll('.format-card');
 
+const COMPARE_MIN_WIDTH = 900;
+
 function showFormats() {
   formatSection.classList.add('visible');
-  cards.forEach(c => { c.disabled = false; });
+  cards.forEach(c => {
+    c.disabled = c.dataset.type === 'compare' && window.innerWidth < COMPARE_MIN_WIDTH;
+  });
 }
 
 function hideFormats() {
