@@ -1,7 +1,8 @@
-const params    = new URLSearchParams(window.location.search);
-const lang      = params.get('lang') || 'english';
-const type      = params.get('type') || '16x9';
-const isCompare = type === 'compare';
+const params     = new URLSearchParams(window.location.search);
+const lang       = params.get('lang') || 'english';
+const type       = params.get('type') || '16x9';
+const isCompare  = type === 'compare';
+const startIndex = parseInt(params.get('start') || '0', 10);
 
 const FORMAT_LABELS = {
   '16x9':       '16:9 Original',
@@ -188,6 +189,10 @@ function buildPlayer(videos) {
   }, { threshold: 0.6 });
 
   items.forEach(item => observer.observe(item));
+
+  if (startIndex > 0 && items[startIndex]) {
+    requestAnimationFrame(() => items[startIndex].scrollIntoView({ behavior: 'instant' }));
+  }
 }
 
 // ── Sync helper — resolves when video can play, or on error ─

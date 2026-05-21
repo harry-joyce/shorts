@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "JW.org Short-Form Video",
+  "version": "1.0",
+  "description": "Injects a short-form video row into the JW.org video library page.",
+  "host_permissions": [
+    "https://www.jw.org/*",
+    "https://harry-joyce.github.io/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.jw.org/*/library/videos/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

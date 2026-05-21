@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Videos | JW.ORG</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+      color: #333;
+      background: #fff;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ── Header ──────────────────────────────────────── */
+    .site-header {
+      background: #2d2d2d;
+      height: 50px;
+    }
+    .site-header .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .jw-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #1a6eb5;
+      width: 42px;
+      height: 36px;
+      flex-shrink: 0;
+      line-height: 1;
+      text-decoration: none;
+    }
+    .jw-logo .jw  { color: #fff; font-size: 13px; font-weight: 800; letter-spacing: -0.5px; }
+    .jw-logo .org { color: #fff; font-size: 8px;  font-weight: 700; letter-spacing: 0.5px; }
+    .site-name {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 400;
+      flex: 1;
+      white-space: nowrap;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .hdr-btn {
+      color: #ccc;
+      background: none;
+      border: none;
+      font-size: 12px;
+      padding: 5px 9px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .hdr-btn:hover { color: #fff; }
+    .hdr-btn svg { flex-shrink: 0; }
+    .hdr-search {
+      display: flex;
+      align-items: center;
+      border: 1px solid #555;
+      height: 26px;
+      padding: 0 6px;
+      gap: 4px;
+    }
+    .hdr-search input {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 12px;
+      width: 90px;
+      outline: none;
+    }
+    .hdr-search input::placeholder { color: #888; }
+    .hdr-search svg { color: #888; flex-shrink: 0; }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    .site-nav {
+      background: #303030;
+      border-top: 1px solid #444;
+    }
+    .site-nav .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      height: 40px;
+    }
+    .nav-link {
+      color: #ccc;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0 10px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link.active { color: #fff; border-bottom-color: #1a6eb5; }
+    .nav-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    /* ── Main wrapper ────────────────────────────────── */
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    /* ── Breadcrumb ──────────────────────────────────── */
+    .breadcrumb {
+      font-size: 12px;
+      color: #888;
+      padding: 10px 0 8px;
+    }
+    .breadcrumb a { color: #888; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { margin: 0 4px; }
+
+    /* ── Page title + toolbar ────────────────────────── */
+    .page-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .page-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #222;
+    }
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .watch-now-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #1a6eb5;
+      color: #fff;
+      border: none;
+      padding: 7px 13px;
+      font-size: 12px;
+      border-radius: 2px;
+    }
+    .watch-now-btn:hover { background: #155fa0; }
+    .lang-select-wrap {
+      position: relative;
+    }
+    .lang-select {
+      appearance: none;
+      border: 1px solid #ccc;
+      padding: 6px 24px 6px 10px;
+      font-size: 12px;
+      font-family: inherit;
+      border-radius: 2px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .lang-select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 4px solid transparent;
+      border-top-color: #666;
+      pointer-events: none;
+    }
+
+    /* ── Generic section ─────────────────────────────── */
+    .section { margin-bottom: 22px; }
+    .section-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+      margin-bottom: 11px;
+    }
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #333;
+    }
+    .see-all {
+      font-size: 12px;
+      color: #1a6eb5;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .see-all:hover { text-decoration: underline; }
+
+    /* ── Featured ────────────────────────────────────── */
+    .featured-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #1a1a2e;
+      overflow: hidden;
+      display: block;
+    }
+    .featured-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .featured-caption {
+      display: block;
+      color: #1a6eb5;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+    .featured-caption:hover { text-decoration: underline; }
+
+    /* ── Latest Videos grid ──────────────────────────── */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .vid-card { display: block; cursor: pointer; }
+    .vid-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #2a2a3a;
+      position: relative;
+      overflow: hidden;
+    }
+    .vid-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vid-dur {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.72);
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 5px;
+      border-radius: 1px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .vid-title {
+      font-size: 11px;
+      color: #1a6eb5;
+      margin-top: 5px;
+      line-height: 1.35;
+    }
+    .vid-card:hover .vid-title { text-decoration: underline; }
+
+    /* ── Video Categories ────────────────────────────── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .cat-card { display: block; cursor: pointer; }
+    .cat-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+    .cat-thumb-bg { width: 100%; height: 100%; }
+    .cat-title {
+      font-size: 11px;
+      color: #1a6eb5;
+      margin-top: 5px;
+    }
+    .cat-card:hover .cat-title { text-decoration: underline; }
+
+    /* ── Video Shorts ────────────────────────────────── */
+    .shorts-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+      scrollbar-color: #ddd transparent;
+    }
+    .shorts-row::-webkit-scrollbar { height: 4px; }
+    .shorts-row::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+
+    .short-card {
+      flex-shrink: 0;
+      width: 88px;
+      display: block;
+      text-decoration: none;
+    }
+    .short-thumb {
+      width: 88px;
+      height: 156px;
+      background: #111;
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+    .short-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .short-dur {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.72);
+      color: #fff;
+      font-size: 10px;
+      padding: 1px 4px;
+      border-radius: 1px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .short-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .short-play svg { opacity: 0.8; transition: opacity 0.15s; }
+    .short-card:hover .short-play svg { opacity: 0; }
+    .short-title {
+      font-size: 10px;
+      color: #333;
+      margin-top: 5px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ── Share row ───────────────────────────────────── */
+    .share-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 11px;
+      color: #888;
+    }
+    .share-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid #ccc;
+      padding: 4px 10px;
+      border-radius: 2px;
+      background: #fff;
+      font-size: 11px;
+      color: #555;
+    }
+    .share-btn:hover { background: #f5f5f5; }
+
+    /* ── Footer ──────────────────────────────────────── */
+    .site-footer {
+      background: #f5f5f5;
+      border-top: 1px solid #e0e0e0;
+      padding: 20px 16px;
+    }
+    .site-footer .inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .footer-tagline {
+      font-size: 11px;
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .footer-tagline sup { font-size: 7px; }
+    .footer-cols {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .footer-col h6 {
+      font-size: 11px;
+      font-weight: 700;
+      color: #444;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 4px; }
+    .footer-col a { font-size: 11px; color: #1a6eb5; }
+    .footer-col a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="inner">
+    <a href="https://www.jw.org/en/" class="jw-logo">
+      <span class="jw">JW.</span>
+      <span class="org">ORG</span>
+    </a>
+    <span class="site-name">Jehovah's Witnesses</span>
+    <div class="header-actions">
+      <a href="https://www.jw.org/en/choose-language/" class="hdr-btn">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
+        </svg>
+        English
+      </a>
+      <a href="https://hub.jw.org/home/en" class="hdr-btn" target="_blank" rel="noopener">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        Log In
+      </a>
+      <div class="hdr-search">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <input type="text" placeholder="Search" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Nav ────────────────────────────────────────────── -->
+<nav class="site-nav">
+  <div class="inner">
+    <a href="https://www.jw.org/en/" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+      HOME
+    </a>
+    <a href="https://www.jw.org/en/bible-teachings/" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 20h9M4 4h7a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/>
+      </svg>
+      BIBLE TEACHINGS
+    </a>
+    <a href="#" class="nav-link active">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+      </svg>
+      LIBRARY
+    </a>
+    <a href="https://www.jw.org/en/news/" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+      </svg>
+      NEWS
+    </a>
+    <a href="https://www.jw.org/en/jehovahs-witnesses/" class="nav-link">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 8v4l3 3"/>
+      </svg>
+      ABOUT US
+    </a>
+  </div>
+</nav>
+
+<!-- ── Main content ───────────────────────────────────── -->
+<div class="page-wrap">
+
+  <nav class="breadcrumb" aria-label="Breadcrumbs">
+    <a href="https://www.jw.org/en/library/">Library</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Videos</span>
+  </nav>
+
+  <div class="page-title-row">
+    <h1 class="page-title">Videos</h1>
+  </div>
+
+  <div class="toolbar" style="margin-bottom:14px">
+    <button class="watch-now-btn">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+      Watch Now
+    </button>
+    <div class="lang-select-wrap">
+      <select class="lang-select"><option>English</option></select>
+    </div>
+  </div>
+
+  <!-- Featured -->
+  <div class="section">
+    <div class="section-hdr">
+      <span class="section-title">Featured</span>
+    </div>
+    <a href="https://www.jw.org/en/library/videos/" class="featured-img">
+      <img
+        src="https://cms-imgp.jw-cdn.org/img/p/502300114/univ/art/502300114_univ_lsr_xl.jpg"
+        alt="Daniel: A Lifetime of Faith"
+        onerror="this.style.display='none'"
+      />
+    </a>
+    <a href="https://www.jw.org/en/library/videos/" class="featured-caption">
+      Daniel: A Lifetime of Faith—Part I
+    </a>
+  </div>
+
+  <!-- Latest Videos -->
+  <div class="section">
+    <div class="section-hdr">
+      <span class="section-title">Latest Videos</span>
+    </div>
+    <div class="video-grid">
+      <a class="vid-card" href="https://www.jw.org/en/library/videos/">
+        <div class="vid-thumb" style="background:linear-gradient(135deg,#1a2a4a 0%,#2d4a8a 100%)">
+          <div class="vid-dur">
+            <svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            2:27
+          </div>
+        </div>
+        <div class="vid-title">Robert Luccioni: Keep Jehovah's Promises in Sight! (Rev. 7:9)</div>
+      </a>
+      <a class="vid-card" href="https://www.jw.org/en/library/videos/">
+        <div class="vid-thumb" style="background:linear-gradient(135deg,#1a3a2a 0%,#2d6a4a 100%)">
+          <div class="vid-dur">
+            <svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            2:27
+          </div>
+        </div>
+        <div class="vid-title">Paul Gillies: "Happy Are the Peacemakers" (Matt. 5:9)</div>
+      </a>
+      <a class="vid-card" href="https://www.jw.org/en/library/videos/">
+        <div class="vid-thumb" style="background:linear-gradient(135deg,#2a1a3a 0%,#4a2d6a 100%)">
+          <div class="vid-dur">
+            <svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            2:27
+          </div>
+        </div>
+        <div class="vid-title">How to Read the Bible</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Video Categories -->
+  <div class="section">
+    <div class="section-hdr">
+      <span class="section-title">Video Categories</span>
+    </div>
+    <div class="cat-grid">
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODStudio">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#1a2a6c,#2040a0)"></div></div>
+        <div class="cat-title">JW Broadcasting</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODChildren">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#bf5200,#e87820)"></div></div>
+        <div class="cat-title">Children</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODTeenagers">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#4a148c,#6a1f9a)"></div></div>
+        <div class="cat-title">Teenagers</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODFamily">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)"></div></div>
+        <div class="cat-title">Family</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODPgmEvt">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#4a0059,#7b1fa2)"></div></div>
+        <div class="cat-title">Program and Events</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODActivities">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#01579b,#0288d1)"></div></div>
+        <div class="cat-title">Our Activities</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODMinistry">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#263238,#37474f)"></div></div>
+        <div class="cat-title">Our Meetings and Ministry</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODOrg">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#1a1a2e,#2d2d4a)"></div></div>
+        <div class="cat-title">Our Organization</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODBible">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#3e2723,#5d4037)"></div></div>
+        <div class="cat-title">The Bible</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODDrama">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#7f0000,#b71c1c)"></div></div>
+        <div class="cat-title">Dramas</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODSeries">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#004d40,#00695c)"></div></div>
+        <div class="cat-title">Series</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODMusic">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#004d60,#006080)"></div></div>
+        <div class="cat-title">Music</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODInterviews">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#4e342e,#6d4c41)"></div></div>
+        <div class="cat-title">Interviews and Experiences</div>
+      </a>
+      <a class="cat-card" href="https://www.jw.org/en/library/videos/#en/categories/VODAudioDescriptions">
+        <div class="cat-thumb"><div class="cat-thumb-bg" style="background:linear-gradient(135deg,#1a237e,#283593)"></div></div>
+        <div class="cat-title">Audio Descriptions</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Video Shorts -->
+  <div class="section">
+    <div class="section-hdr">
+      <span class="section-title">Video Shorts</span>
+      <a href="player.html?lang=english&amp;type=9x16-edited" class="see-all">
+        See All
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M6 3l5 5-5 5"/>
+        </svg>
+      </a>
+    </div>
+    <div class="shorts-row" id="shorts-row">
+      <!-- Populated by script below -->
+    </div>
+  </div>
+
+  <!-- Share -->
+  <div class="share-row">
+    <button class="share-btn">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <path d="M8.59 13.51l6.83 3.98M15.41 6.51L8.59 10.49"/>
+      </svg>
+      Share
+    </button>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- ── Footer ─────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="inner">
+    <p class="footer-tagline">JW.ORG<sup>®</sup> &nbsp;/&nbsp; Official Website of Jehovah's Witnesses</p>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h6>Bible Teachings</h6>
+        <ul>
+          <li><a href="https://www.jw.org/en/bible-teachings/questions/">Bible Questions Answered</a></li>
+          <li><a href="https://www.jw.org/en/bible-teachings/family/">Marriage &amp; Family</a></li>
+          <li><a href="https://www.jw.org/en/bible-teachings/teenagers/">Teens &amp; Young Adults</a></li>
+          <li><a href="https://www.jw.org/en/bible-teachings/children/">Children</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h6>Library</h6>
+        <ul>
+          <li><a href="https://www.jw.org/en/library/bible/">Bibles</a></li>
+          <li><a href="https://www.jw.org/en/library/books/">Books</a></li>
+          <li><a href="https://www.jw.org/en/library/videos/">Videos</a></li>
+          <li><a href="https://www.jw.org/en/library/music-songs/">Music</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h6>About Us</h6>
+        <ul>
+          <li><a href="https://www.jw.org/en/jehovahs-witnesses/faq/">Frequently Asked Questions</a></li>
+          <li><a href="https://www.jw.org/en/jehovahs-witnesses/contact/">Contact Us</a></li>
+          <li><a href="https://www.jw.org/en/jehovahs-witnesses/meetings/">Meetings</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SERIES = {
+  dlf:  'Daniel: A Lifetime of Faith',
+  gnj:  'Good News From Jehovah',
+  jcm:  'Jesus—The Greatest Man',
+  wcgv: 'Whiteboard Animation',
+};
+
+function title(path) {
+  const name   = path.split('/').pop().replace('.mp4','');
+  const prefix = name.split('_')[0].toLowerCase();
+  return SERIES[prefix] || name.replace(/_/g,' ');
+}
+
+function fmtDur(s) {
+  const m = Math.floor(s/60), sec = Math.round(s%60);
+  return `${m}:${sec<10?'0':''}${sec}`;
+}
+
+(async () => {
+  const row = document.getElementById('shorts-row');
+  if (!row) return;
+
+  let manifest;
+  try { manifest = await fetch('manifest.json').then(r=>r.json()); }
+  catch { return; }
+
+  const clips = manifest?.english?.['9x16-edited'] || [];
+
+  clips.forEach((src, idx) => {
+    const a      = document.createElement('a');
+    a.className  = 'short-card';
+    a.href       = `player.html?lang=english&type=9x16-edited&start=${idx}`;
+
+    const thumb  = document.createElement('div');
+    thumb.className = 'short-thumb';
+
+    const vid    = document.createElement('video');
+    vid.src         = src;
+    vid.muted       = true;
+    vid.playsInline = true;
+    vid.loop        = true;
+    vid.preload     = 'metadata';
+
+    const dur    = document.createElement('div');
+    dur.className   = 'short-dur';
+    dur.innerHTML   = `<svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> —`;
+    vid.addEventListener('loadedmetadata', () => {
+      dur.innerHTML = `<svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> ${fmtDur(vid.duration)}`;
+    });
+
+    const play   = document.createElement('div');
+    play.className  = 'short-play';
+    play.innerHTML  = `<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>`;
+
+    a.addEventListener('mouseenter', () => vid.play().catch(()=>{}));
+    a.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+
+    thumb.append(vid, dur, play);
+
+    const lbl    = document.createElement('div');
+    lbl.className   = 'short-title';
+    lbl.textContent = title(src);
+
+    a.append(thumb, lbl);
+    row.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>
