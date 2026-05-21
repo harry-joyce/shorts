@@ -609,6 +609,7 @@ function fmtDur(s) {
     dur.className   = 'short-dur';
     dur.innerHTML   = `<svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> —`;
     vid.addEventListener('loadedmetadata', () => {
+      vid.currentTime = 0.1;
       dur.innerHTML = `<svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> ${fmtDur(vid.duration)}`;
     });
 
