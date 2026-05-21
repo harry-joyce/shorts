@@ -155,6 +155,14 @@ function buildPlayer(videos) {
   // IntersectionObserver — autoplay video in view
   const items = feedEl.querySelectorAll('.video-item');
 
+  if (startIndex > 0 && items[startIndex]) {
+    console.log('[player] startIndex', startIndex, 'offsetTop', items[startIndex].offsetTop);
+    feedEl.style.scrollSnapType = 'none';
+    feedEl.scrollTop = items[startIndex].offsetTop;
+    console.log('[player] scrollTop after set:', feedEl.scrollTop);
+    requestAnimationFrame(() => { feedEl.style.scrollSnapType = 'y mandatory'; });
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const video   = entry.target.querySelector('video');
@@ -190,9 +198,6 @@ function buildPlayer(videos) {
 
   items.forEach(item => observer.observe(item));
 
-  if (startIndex > 0 && items[startIndex]) {
-    requestAnimationFrame(() => items[startIndex].scrollIntoView({ behavior: 'instant' }));
-  }
 }
 
 // ── Sync helper — resolves when video can play, or on error ─
