@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JW Shorts — Review Setup</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    .site-header {
+      background: #2d2d2d;
+      padding: 16px 24px;
+    }
+    .site-header h1 {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .site-header p {
+      color: #aaa;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .main {
+      max-width: 580px;
+      margin: 48px auto;
+      padding: 0 24px 64px;
+    }
+
+    .intro {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    /* Steps */
+    .steps { display: flex; flex-direction: column; gap: 32px; }
+
+    .step { display: flex; gap: 18px; }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      background: #1a6eb5;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .step-body { flex: 1; }
+
+    .step-body h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #222;
+    }
+
+    .step-body p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .step-body p + p { margin-top: 4px; }
+
+    .kbd {
+      display: inline-block;
+      background: #eee;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 11px;
+      font-family: inherit;
+      color: #444;
+    }
+
+    /* Drag zone */
+    .drag-zone {
+      background: #fff;
+      border: 2px dashed #1a6eb5;
+      border-radius: 8px;
+      padding: 24px 20px;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .drag-hint {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 14px;
+    }
+
+    .bookmark-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #1a6eb5;
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: grab;
+      user-select: none;
+    }
+    .bookmark-link:active { cursor: grabbing; }
+
+    .drag-arrow {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 12px;
+    }
+
+    /* Go button */
+    .go-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #1a6eb5;
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 14px;
+    }
+    .go-btn:hover { background: #155fa0; }
+
+    .note {
+      background: #fff8e1;
+      border-left: 3px solid #f9a825;
+      border-radius: 0 4px 4px 0;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: #5d4037;
+      line-height: 1.5;
+      margin-top: 14px;
+    }
+
+    /* Divider between steps */
+    .step-connector {
+      width: 2px;
+      background: #ddd;
+      margin: 0 0 0 16px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>JW Shorts — Review Setup</h1>
+  <p>One-time setup to inject the Video Shorts section into jw.org</p>
+</header>
+
+<main class="main">
+
+  <p class="intro">
+    This bookmarklet runs the same code as the browser extension — no installation required.
+    Once saved, a single click on jw.org injects the Video Shorts section exactly as the extension does.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h2>Show your bookmarks bar</h2>
+        <p><strong>Chrome / Edge:</strong> <kbd class="kbd">⌘ Shift B</kbd> (Mac) &nbsp;or&nbsp; <kbd class="kbd">Ctrl Shift B</kbd> (Windows)</p>
+        <p><strong>Firefox:</strong> View → Toolbars → Bookmarks Toolbar</p>
+        <p><strong>Safari:</strong> View → Show Favourites Bar</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h2>Drag this link to your bookmarks bar</h2>
+        <div class="drag-zone">
+          <p class="drag-hint">Drag the button below up to your bookmarks bar</p>
+          <a id="bookmark-link" href="#" class="bookmark-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <polygon points="5,3 19,12 5,21"/>
+            </svg>
+            JW Shorts
+          </a>
+          <p class="drag-arrow">↑ &nbsp; drag to bookmarks bar &nbsp; ↑</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h2>Go to jw.org and click the bookmark</h2>
+        <p>Click below to open jw.org/library/videos, then click the <strong>JW Shorts</strong> bookmark you just saved. The shorts section will appear on the page.</p>
+        <a href="https://www.jw.org/en/library/videos/" target="_blank" class="go-btn">
+          Go to jw.org/library/videos
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M6 3l5 5-5 5"/>
+          </svg>
+        </a>
+        <div class="note">
+          Clicking the bookmark from any page will navigate you to the right jw.org page automatically.
+          If the section doesn't appear straight away, wait for the page to finish loading and click the bookmark once more.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  function bookmarklet() {
+    if (location.hostname !== 'www.jw.org' || !location.pathname.includes('/library/videos')) {
+      location.href = 'https://www.jw.org/en/library/videos/';
+      return;
+    }
+
+    if (document.getElementById('jwshorts-section')) return;
+
+    var style = document.createElement('style');
+    style.textContent = '#jwshorts-section{margin:24px 0 32px;border-top:1px solid #ddd;padding-top:20px}.jwshorts-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.jwshorts-title{font-size:20px!important;font-weight:700!important;color:#333!important;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif!important}#jwshorts-section[data-theme=dark] .jwshorts-title{color:#fff!important}.jwshorts-see-all{font-size:14px!important;color:#1a6eb5!important;text-decoration:none!important;display:flex!important;align-items:center;gap:4px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif!important}.jwshorts-see-all:hover{text-decoration:underline!important}.jwshorts-row{display:flex!important;flex-wrap:nowrap;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:#ddd transparent}.jwshorts-row::-webkit-scrollbar{height:4px}.jwshorts-row::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}.jwshorts-card{flex:0 0 180px!important;display:block!important;text-decoration:none!important;cursor:pointer}.jwshorts-thumb{width:100%!important;aspect-ratio:9/16!important;height:auto!important;background:#111;position:relative;overflow:hidden;border-radius:3px}.jwshorts-thumb video{width:100%!important;height:100%!important;object-fit:cover;display:block!important}.jwshorts-dur{position:absolute!important;bottom:5px!important;left:5px!important;background:rgba(0,0,0,.65)!important;color:#fff!important;font-size:11px!important;padding:2px 5px!important;border-radius:2px;display:flex!important;align-items:center;gap:3px;pointer-events:none;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif!important}.jwshorts-play{position:absolute!important;inset:0!important;display:flex!important;align-items:center;justify-content:center;pointer-events:none;transition:opacity .15s}.jwshorts-card:hover .jwshorts-play{opacity:0}.jwshorts-label{font-size:13px!important;color:rgb(82,108,163)!important;margin-top:6px!important;line-height:1.35!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif!important}#jwshorts-section[data-theme=dark] .jwshorts-label{color:rgb(164,184,224)!important}';
+    document.head.appendChild(style);
+
+    var BASE = 'https://harry-joyce.github.io/shorts';
+    var PLAYER = BASE + '/player.html';
+    var MANIFEST = BASE + '/manifest.json';
+    var SERIES = {
+      dlf: 'Daniel: A Lifetime of Faith',
+      gnj: 'Good News From Jehovah',
+      jcm: 'Jesus—The Greatest Man',
+      wcgv: 'Whiteboard Animation'
+    };
+
+    function deriveTitle(path) {
+      var name = path.split('/').pop().replace('.mp4', '');
+      var prefix = name.split('_')[0].toLowerCase();
+      return SERIES[prefix] || name.replace(/_/g, ' ');
+    }
+
+    function fmtDur(s) {
+      var m = Math.floor(s / 60), sec = Math.round(s % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    function articleIsReady(article) {
+      return article.querySelectorAll('a[href]').length > 2;
+    }
+
+    function waitForArticle(callback) {
+      var ticks = 0, MAX = 60;
+      var id = setInterval(function () {
+        ticks++;
+        var article = document.getElementById('article');
+        if (!article) { if (ticks > MAX) clearInterval(id); return; }
+        if (articleIsReady(article)) { clearInterval(id); callback(article); }
+      }, 500);
+    }
+
+    function findAnchor(article) {
+      var walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
+      var node;
+      while ((node = walker.nextNode())) {
+        if (node.textContent.trim() === 'Video Shorts') {
+          var el = node.parentElement;
+          while (el && el !== article) {
+            if (el.nextElementSibling) return el;
+            el = el.parentElement;
+          }
+          el = node.parentElement;
+          while (el.parentElement && el.parentElement !== article) el = el.parentElement;
+          return el;
+        }
+      }
+      return null;
+    }
+
+    function buildSection(clips) {
+      var section = document.createElement('div');
+      section.id = 'jwshorts-section';
+
+      var hdr = document.createElement('div');
+      hdr.className = 'jwshorts-hdr';
+      hdr.innerHTML =
+        '<span class="jwshorts-title">Video Shorts</span>' +
+        '<a class="jwshorts-see-all" href="' + PLAYER + '?lang=english&type=9x16-edited">' +
+        'See All<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></a>';
+
+      var row = document.createElement('div');
+      row.className = 'jwshorts-row';
+
+      clips.forEach(function (src, idx) {
+        var a = document.createElement('a');
+        a.className = 'jwshorts-card';
+        a.href = PLAYER + '?lang=english&type=9x16-edited&start=' + idx;
+
+        var thumb = document.createElement('div');
+        thumb.className = 'jwshorts-thumb';
+
+        var vid = document.createElement('video');
+        vid.src = BASE + '/' + src;
+        vid.muted = true;
+        vid.playsInline = true;
+        vid.loop = true;
+        vid.preload = 'metadata';
+
+        var dur = document.createElement('div');
+        dur.className = 'jwshorts-dur';
+        dur.innerHTML = '<svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> —';
+        vid.addEventListener('loadedmetadata', function () {
+          dur.innerHTML = '<svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> ' + fmtDur(vid.duration);
+        });
+
+        var play = document.createElement('div');
+        play.className = 'jwshorts-play';
+        play.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>';
+
+        a.addEventListener('mouseenter', function () { vid.play().catch(function () {}); });
+        a.addEventListener('mouseleave', function () { vid.pause(); vid.currentTime = 0; });
+
+        thumb.appendChild(vid);
+        thumb.appendChild(dur);
+        thumb.appendChild(play);
+
+        var label = document.createElement('div');
+        label.className = 'jwshorts-label';
+        label.textContent = deriveTitle(src);
+
+        a.appendChild(thumb);
+        a.appendChild(label);
+        row.appendChild(a);
+      });
+
+      section.appendChild(hdr);
+      section.appendChild(row);
+      return section;
+    }
+
+    function pageTheme() {
+      var bg = getComputedStyle(document.body).backgroundColor;
+      var m = bg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+      if (m) {
+        var luma = 0.299 * +m[1] + 0.587 * +m[2] + 0.114 * +m[3];
+        return luma < 128 ? 'dark' : 'light';
+      }
+      return 'light';
+    }
+
+    function inject(article) {
+      if (document.getElementById('jwshorts-section')) return;
+      fetch(MANIFEST)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var clips = (data && data.english && data.english['9x16-edited']) || [];
+          if (!clips.length) return;
+          var section = buildSection(clips);
+          section.dataset.theme = pageTheme();
+          new MutationObserver(function () { section.dataset.theme = pageTheme(); })
+            .observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme', 'style'] });
+          var anchor = findAnchor(article);
+          if (anchor) anchor.insertAdjacentElement('afterend', section);
+          else article.appendChild(section);
+        })
+        .catch(function () {});
+    }
+
+    waitForArticle(function (article) { inject(article); });
+
+    window.addEventListener('hashchange', function () {
+      var hash = location.hash.replace('#', '');
+      if (!hash || hash === 'en/home') {
+        var old = document.getElementById('jwshorts-section');
+        if (old) old.remove();
+        waitForArticle(function (article) { inject(article); });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var link = document.getElementById('bookmark-link');
+    link.href = 'javascript:(' + bookmarklet.toString() + ')()';
+    link.addEventListener('click', function (e) { e.preventDefault(); });
+  });
+</script>
+
+</body>
+</html>
