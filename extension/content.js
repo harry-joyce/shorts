@@ -90,7 +90,7 @@
     hdr.className   = 'jwshorts-hdr';
     hdr.innerHTML   = `
       <span class="jwshorts-title">Video Shorts</span>
-      <a class="jwshorts-see-all" href="${PLAYER}?lang=english&type=9x16-edited" target="_blank" rel="noopener">
+      <a class="jwshorts-see-all" href="${PLAYER}?lang=english&type=9x16-edited">
         See All
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <path d="M6 3l5 5-5 5"/>
@@ -105,8 +105,6 @@
       const a         = document.createElement('a');
       a.className     = 'jwshorts-card';
       a.href          = `${PLAYER}?lang=english&type=9x16-edited&start=${idx}`;
-      a.target        = '_blank';
-      a.rel           = 'noopener';
 
       const thumb     = document.createElement('div');
       thumb.className = 'jwshorts-thumb';
