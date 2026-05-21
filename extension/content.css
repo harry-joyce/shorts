@@ -1,64 +1,66 @@
 /* ── Injected Video Shorts section ───────────────────── */
 
 #jwshorts-section {
-  margin: 0 0 32px;
+  margin: 24px 0 32px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
 }
 
 .jwshorts-hdr {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .jwshorts-title {
-  font-size: 12px !important;
+  font-size: 20px !important;
   font-weight: 700 !important;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
   color: #333 !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
 }
 
+#jwshorts-section[data-theme="dark"] .jwshorts-title {
+  color: #fff !important;
+}
+
 .jwshorts-see-all {
-  font-size: 12px !important;
+  font-size: 14px !important;
   color: #1a6eb5 !important;
   text-decoration: none !important;
   display: flex !important;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
 }
 .jwshorts-see-all:hover { text-decoration: underline !important; }
 
-/* 2-row horizontal scroll grid */
+/* Single horizontal scrolling row */
 .jwshorts-row {
-  display: grid !important;
-  grid-template-rows: repeat(2, auto);
-  grid-auto-flow: column;
-  gap: 10px;
+  display: flex !important;
+  flex-wrap: nowrap;
+  gap: 12px;
   overflow-x: auto;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   scrollbar-width: thin;
   scrollbar-color: #ddd transparent;
 }
 .jwshorts-row::-webkit-scrollbar { height: 4px; }
 .jwshorts-row::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
 
-/* Each card */
+/* Each card — flex to fill available width evenly */
 .jwshorts-card {
-  width: 120px !important;
+  flex: 0 0 180px !important;
   display: block !important;
   text-decoration: none !important;
   cursor: pointer;
 }
 
-/* Portrait thumbnail */
+/* Portrait thumbnail with 9:16 aspect ratio */
 .jwshorts-thumb {
-  width: 120px !important;
-  height: 213px !important;
+  width: 100% !important;
+  aspect-ratio: 9 / 16 !important;
+  height: auto !important;
   background: #111;
   position: relative;
   overflow: hidden;
@@ -74,16 +76,16 @@
 /* Duration badge */
 .jwshorts-dur {
   position: absolute !important;
-  bottom: 4px !important;
-  left: 4px !important;
-  background: rgba(0, 0, 0, 0.72) !important;
+  bottom: 5px !important;
+  left: 5px !important;
+  background: rgba(0, 0, 0, 0.65) !important;
   color: #fff !important;
-  font-size: 10px !important;
-  padding: 1px 4px !important;
-  border-radius: 1px;
+  font-size: 11px !important;
+  padding: 2px 5px !important;
+  border-radius: 2px;
   display: flex !important;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
   pointer-events: none;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
 }
@@ -102,13 +104,17 @@
 
 /* Title below thumbnail */
 .jwshorts-label {
-  font-size: 10px !important;
-  color: #333 !important;
-  margin-top: 5px !important;
+  font-size: 13px !important;
+  color: rgb(82, 108, 163) !important;
+  margin-top: 6px !important;
   line-height: 1.35 !important;
   display: -webkit-box !important;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
+}
+
+#jwshorts-section[data-theme="dark"] .jwshorts-label {
+  color: rgb(164, 184, 224) !important;
 }

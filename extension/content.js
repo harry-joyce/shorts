@@ -89,7 +89,7 @@
     const hdr       = document.createElement('div');
     hdr.className   = 'jwshorts-hdr';
     hdr.innerHTML   = `
-      <span class="jwshorts-title">Video Shorts — 9:16 Format</span>
+      <span class="jwshorts-title">Video Shorts</span>
       <a class="jwshorts-see-all" href="${PLAYER}?lang=english&type=9x16-edited" target="_blank" rel="noopener">
         See All
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -146,6 +146,23 @@
     return section;
   }
 
+  // ── Theme detection ──────────────────────────────────────────────
+  // Read the page's actual background luminance rather than relying on
+  // prefers-color-scheme, so the section matches the site's own setting.
+  function pageTheme() {
+    const bg = getComputedStyle(document.body).backgroundColor;
+    const m  = bg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+    if (m) {
+      const luma = 0.299 * +m[1] + 0.587 * +m[2] + 0.114 * +m[3];
+      return luma < 128 ? 'dark' : 'light';
+    }
+    return 'light';
+  }
+
+  function applyTheme(section) {
+    section.dataset.theme = pageTheme();
+  }
+
   // ── Main inject ──────────────────────────────────────────────────
   async function inject(article) {
     if (document.getElementById('jwshorts-section')) {
@@ -168,6 +185,12 @@
     if (!clips.length) { console.log('[JW Shorts] no clips, aborting'); return; }
 
     const section = buildSection(clips);
+    applyTheme(section);
+
+    // Re-check theme if the site toggles dark/light after inject
+    new MutationObserver(() => applyTheme(section))
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme', 'style'] });
+
     const anchor  = findAnchor(article);
 
     if (anchor) {
